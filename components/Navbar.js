@@ -8,7 +8,7 @@ const Navbar = () => {
           src="/assets/images/F1.png"
           className="float-left mr-2"
           width={100}
-          height={100}
+          height={0}
           alt="F1 logo"
         />
 
