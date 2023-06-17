@@ -8,8 +8,8 @@ const Navbar = () => {
           src="/assets/images/F1.png"
           className="float-left mr-2"
           width={100}
-          height={0}
-          alt="F1 logo"
+          height={25}
+          alt=""
         />
 
         <span>F1 Archive</span>
@@ -25,7 +25,7 @@ const Navbar = () => {
           className="float-left mr-2"
           width={20}
           height={20}
-          alt="F1 logo"
+          alt=""
         />
         <span>Github</span>
       </a>
