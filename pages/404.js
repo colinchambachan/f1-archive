@@ -11,8 +11,8 @@ const NotFound = () => {
             <Image
               src="/assets/images/RedFlag.png"
               className="float-left mr-2"
-              width={100}
-              height={20}
+              width={150}
+              height={10}
               alt=""
             />
           </div>
