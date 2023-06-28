@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <div className="h-screen">
+    <>
       <Navbar />
       <div className="animate-fade">
         <div className=" flex justify-center items-center pt-12 lg:pt-40">
@@ -18,15 +18,15 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center mt-5">
-          <a
+          <Link
             type="button"
             className="flex hover:cursor-pointer bg-red-700 text-white h-8 lg:h-10 items-center rounded-l-full rounded-r-full text-sm lg:text-lg px-4 py-2  hover:scale-105 transition ease-in-out "
-            href="/search"
+            href="/search-by-race"
           >
             <span>Get Started</span>
-          </a>
+          </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }
