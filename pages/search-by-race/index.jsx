@@ -56,7 +56,7 @@ function Search() {
     <>
       <Navbar />
 
-      <div className="">
+      <div className="mt-16">
         <div className=" pt-12 lg:pt-18">
           <div className="lg:text-6xl text-5xl font-semibold  text-center h-full">
             Search by Race
