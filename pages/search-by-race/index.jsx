@@ -10,6 +10,7 @@ function Search() {
   const [circuitOptions, setCiruitOptions] = useState([]);
   const [invalidInput, setInvalidInput] = useState(true);
 
+  // TODO: create api route
   // Fetch circuits corresponding to selected year
   const fetchRespectiveCircuits = async () => {
     if (selectedYear !== "Choose a Year" && selectedYear !== null) {

@@ -10,6 +10,7 @@ export default function App({ Component, pageProps }) {
       {/* <main> */}
       <Head>
         <title>F1 Archive</title>
+        <link rel="shortcut icon" href="/assets/images/f1Icon.png" />
       </Head>
       <Component {...pageProps} />
     </main>
