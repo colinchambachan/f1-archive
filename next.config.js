@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["flagsapi.com"], // hostname of the img url
+    domains: ["flagsapi.com", "media-2.api-sports.io"], // hostname of the img url
   },
 };
 

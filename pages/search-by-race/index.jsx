@@ -9,26 +9,13 @@ function Search() {
   const [selectedCircuit, setSelectedCircuit] = useState(null);
   const [circuitOptions, setCiruitOptions] = useState([]);
   const [invalidInput, setInvalidInput] = useState(true);
+  const [showError, setShowError] = useState(false);
 
-  // TODO: create api route
-  // Fetch circuits corresponding to selected year
-  const fetchRespectiveCircuits = async () => {
+  const getCiruits = async (selectedYear) => {
     if (selectedYear !== "Choose a Year" && selectedYear !== null) {
-      await fetch(`http://ergast.com/api/f1/${selectedYear}.json`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let circuits = [];
-          data.MRData.RaceTable.Races.map((element) => {
-            let obj = {};
-            obj["label"] = element.raceName;
-            obj["value"] = element.round;
-
-            circuits.push(obj);
-          });
-          setCiruitOptions(circuits);
-        });
+      const response = await fetch(`api/getRespectiveCircuits/${selectedYear}`);
+      const data = await response.json();
+      setCiruitOptions(data);
     } else {
       setCiruitOptions([]);
     }
@@ -36,10 +23,10 @@ function Search() {
 
   // Update selected circuits everytime selected year is changed
   useEffect(() => {
-    fetchRespectiveCircuits();
+    getCiruits(selectedYear);
   }, [selectedYear]);
 
-  // Chec
+  // Check to see if button should be enabled
   useEffect(() => {
     if (
       selectedYear === "Choose a Year" ||
@@ -50,6 +37,7 @@ function Search() {
       setInvalidInput(true);
     } else {
       setInvalidInput(false);
+      setShowError(false);
     }
   }, [selectedYear, selectedCircuit]);
 
@@ -86,11 +74,23 @@ function Search() {
                 : `/search-by-race/${selectedYear}/${selectedCircuit}`
             }
           >
-            <button className="flex hover:cursor-pointer bg-white  border-red-700 text-red-700 h-8 lg:h-10 items-center rounded-l-full rounded-r-full text-sm lg:text-lg px-4 py-2  hover:scale-105 transition ease-in-out ">
+            <button
+              onClick={() => {
+                if (invalidInput) {
+                  setShowError(true);
+                }
+              }}
+              className="flex hover:cursor-pointer bg-white  border-red-700 text-red-700 h-8 lg:h-10 items-center rounded-l-full rounded-r-full text-sm lg:text-lg px-4 py-2  hover:scale-105 transition ease-in-out duration-300 "
+            >
               <span>Search</span>
             </button>
           </Link>
         </div>
+        {showError && (
+          <div className="transition-all animate-fadeInQuick ease-in-out duration-300 flex justify-center pt-5 ">
+            * Please select both a year and a circuit
+          </div>
+        )}
       </div>
     </>
   );
