@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import { convertCountry } from "@/utils/convertCountry";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export async function getServerSideProps(context) {
   const {
@@ -44,7 +45,23 @@ export async function getServerSideProps(context) {
 }
 
 const RaceResults = ({ data }) => {
-  console.log(data);
+  const [screenWidth, setScreenWidth] = useState();
+  const minScreenSize = 875;
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    // Add event listener to update width on window resize
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -55,9 +72,7 @@ const RaceResults = ({ data }) => {
       </div>
       <div className="flex justify-center w-screen">
         {data.RaceData.MRData.RaceTable.Races.length > 0 && (
-          <div className="animate-fade w-3/4 xl:w-3/5 mt-8 mb-60">
-            {/* TODO: data formatting for races not year completed, ie Saudi grand prix is yet to happen */}
-
+          <div className="animate-fade w-3/4 xl:w-3/5 mt-8 mb-10">
             <div className="flex items-center justify-between">
               <div>
                 <div className="font-extrabold text-xl lg:text-4xl">
@@ -102,16 +117,19 @@ const RaceResults = ({ data }) => {
                 </div>
               </div>
             </div>
-
             <div className="border-2 border-x-0 border-b-0 px-5 my-3 border-white"></div>
             <div className="text-2xl font-medium">Race Results</div>
-            <div className="w-full  mt-3 mb-5 ">
+            <div className="w-full mt-3">
               {" "}
               <table className="w-full text-center border-spacing-2">
-                {/* <tr> */}
+                {/* <when less than 750px, hid car num, +/- */}
                 <tr className="border-b-2 border-neutral-600 mb-2 ">
-                  <th className="pb-2">Pos.</th>
-                  <th className="pb-2">Car Num</th>
+                  <th className="pb-2" width="10px">
+                    Pos.
+                  </th>
+                  {screenWidth > minScreenSize && (
+                    <th className="pb-2">Car Num.</th>
+                  )}
                   <th className="pb-2" width="300px">
                     Name
                   </th>
@@ -119,8 +137,10 @@ const RaceResults = ({ data }) => {
                   <th className="pb-2" width="150px">
                     Time / Status
                   </th>
-                  <th className="pb-2">Quali</th>
-                  <th className="pb-2">+/-</th>
+                  {screenWidth > minScreenSize && (
+                    <th className="pb-2">Quali</th>
+                  )}
+                  {screenWidth > minScreenSize && <th className="pb-2">+/-</th>}
                   <th className="pb-2">Points</th>
                 </tr>
 
@@ -128,12 +148,14 @@ const RaceResults = ({ data }) => {
                   (finish) => {
                     return (
                       <tr height="50px">
-                        <td className="text-center" width="1px" height="">
+                        <td className="text-center" height="">
                           {finish.positionText}
                         </td>
-                        <td className="text-center" width="100px">
-                          {finish.number}
-                        </td>
+                        {screenWidth > minScreenSize && (
+                          <td className="text-center" width="100px">
+                            {finish.number}
+                          </td>
+                        )}
                         <td>
                           {finish.Driver.givenName} {finish.Driver.familyName}
                         </td>
@@ -141,24 +163,32 @@ const RaceResults = ({ data }) => {
                         <td className="text-center">
                           {finish.Time ? finish.Time.time : finish.status}
                         </td>
-                        <td>{finish.grid}</td>
-                        <td>
-                          {finish.positionText === "R"
-                            ? "-"
-                            : finish.grid - finish.position > 0
-                            ? "+" + (finish.grid - finish.position)
-                            : finish.grid - finish.position}
-                        </td>
-                        <td>
-                          {finish.points > 0
-                            ? "+" + finish.points
-                            : finish.points}
-                        </td>
+                        {screenWidth > minScreenSize && <td>{finish.grid}</td>}
+                        {screenWidth > minScreenSize && (
+                          <td>
+                            {finish.positionText === "R"
+                              ? "-"
+                              : finish.grid - finish.position > 0
+                              ? "+" + (finish.grid - finish.position)
+                              : finish.grid - finish.position}
+                          </td>
+                        )}
+                        <td>{finish.points > 0 ? "+" + finish.points : "-"}</td>
                       </tr>
                     );
                   }
                 )}
               </table>
+              <div className="w-full flex flex-wrap text-sm mt-10 justify-center text-neutral-600">
+                For more information:
+                <Link
+                  className="transition ease-in-out hover:underline underline-offset-4 ms-3"
+                  href={data.RaceData.MRData.RaceTable.Races[0].url}
+                  target="_blank"
+                >
+                  {data.RaceData.MRData.RaceTable.Races[0].url}
+                </Link>
+              </div>
             </div>
           </div>
         )}
