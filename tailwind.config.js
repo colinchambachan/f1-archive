@@ -10,6 +10,7 @@ module.exports = {
       // animation classes
       animation: {
         fade: "fadeIn 4s ease-in-out",
+        fadeInQuick: "fadeIn 2s ease-in-out",
       },
 
       // actual animation

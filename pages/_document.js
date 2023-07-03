@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body className="h-screen bg-gradient-to-b from-neutral-800 to-neutral-900">
+      <body className="overflow-x-hidden">
         <Main />
         <NextScript />
       </body>

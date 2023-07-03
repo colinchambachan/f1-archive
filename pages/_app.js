@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import { Francois_One, Inter, Montserrat } from "next/font/google";
 import Head from "next/head";
 
+import cx from "classnames";
+
 const inter = Montserrat({ subsets: ["latin"], weight: ["400"] });
 
 export default function App({ Component, pageProps }) {
