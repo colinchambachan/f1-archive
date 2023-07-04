@@ -38,6 +38,9 @@ export async function getServerSideProps(context) {
         }
       );
       data["circuitData"] = await circuitResponse.json();
+      data[
+        "countryImage"
+      ] = `https://flagsapi.com/${data.convertCountry}/flat/64.png`;
     }
 
     return { props: { data } };
@@ -87,7 +90,7 @@ const RaceResults = ({ data }) => {
                 <Image
                   width={75}
                   height={64}
-                  src={`https://flagsapi.com/${data.convertCountry}/flat/64.png`}
+                  src={data.countryImage}
                   alt={`${data.RaceData.MRData.RaceTable.Races[0].raceName} circuit`}
                 />
               </div>
