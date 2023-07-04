@@ -37,6 +37,7 @@ export async function getServerSideProps(context) {
           },
         }
       );
+      data["apiKey"] = process.env.F1_API_KEY;
       data["circuitData"] = await circuitResponse.json();
       data[
         "countryImage"
