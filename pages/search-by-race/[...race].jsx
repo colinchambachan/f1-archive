@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
           method: "GET",
           headers: {
             "x-rapidapi-host": "api-formula-1.p.rapidapi.com",
-            "x-rapidapi-key": process.env.F1_API_KEY,
+            "x-rapidapi-key": process.env.NEXT_PUBLIC_F1_API_KEY,
           },
         }
       );
@@ -111,9 +111,9 @@ const RaceResults = ({ data }) => {
                 </div>
                 <div className="text-end">
                   <span className="font-bold">Lap Record:</span>{" "}
-                  {data.circuitData.response[0].lap_record.time} (
-                  {data.circuitData.response[0].lap_record.driver} -{" "}
-                  {data.circuitData.response[0].lap_record.year})
+                  {data.circuitData.response[0]?.lap_record.time} (
+                  {data.circuitData.response[0]?.lap_record.driver} -{" "}
+                  {data.circuitData.response[0]?.lap_record.year})
                 </div>
               </div>
             </div>
