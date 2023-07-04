@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import { Francois_One, Inter, Montserrat } from "next/font/google";
 import Head from "next/head";
 const inter = Montserrat({ subsets: ["latin"], weight: ["400"] });
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }) {
         <link rel="shortcut icon" href="/assets/images/f1Icon.png" />
       </Head>
       <Component {...pageProps} />
+      <Analytics />
     </main>
   );
 }
