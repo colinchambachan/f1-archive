@@ -61,7 +61,7 @@ const RaceResults = ({ data }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  console.log(data);
   return (
     <>
       <Navbar />
@@ -107,7 +107,7 @@ const RaceResults = ({ data }) => {
               <div>
                 <div className="text-end">
                   <span className="font-bold"> Laps:</span>{" "}
-                  {data.circuitData.response[0].laps}
+                  {data.circuitData?.response[0].laps}
                 </div>
                 <div className="text-end">
                   <span className="font-bold">Lap Record:</span>{" "}
