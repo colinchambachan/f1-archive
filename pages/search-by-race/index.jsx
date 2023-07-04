@@ -57,7 +57,7 @@ function Search() {
           </div>
         </div>
 
-        <div className="flex justify-center mt-10">
+        <div className="flex flex-wrap  justify-center mt-10">
           <F1Select id="Year" options={RaceYears} setValue={setSelectedYear} />
           <F1Select
             id="Circuit"

@@ -65,7 +65,7 @@ const RaceResults = ({ data }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(data);
+
   return (
     <>
       <Navbar />
@@ -145,7 +145,9 @@ const RaceResults = ({ data }) => {
                     <th className="pb-2">Quali</th>
                   )}
                   {screenWidth > minScreenSize && <th className="pb-2">+/-</th>}
-                  <th className="pb-2">Points</th>
+                  {screenWidth > minScreenSize && (
+                    <th className="pb-2">Points</th>
+                  )}
                 </tr>
 
                 {data.RaceData.MRData.RaceTable.Races[0].Results.map(
@@ -177,7 +179,11 @@ const RaceResults = ({ data }) => {
                               : finish.grid - finish.position}
                           </td>
                         )}
-                        <td>{finish.points > 0 ? "+" + finish.points : "-"}</td>
+                        {screenWidth > minScreenSize && (
+                          <td>
+                            {finish.points > 0 ? "+" + finish.points : "-"}
+                          </td>
+                        )}
                       </tr>
                     );
                   }

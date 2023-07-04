@@ -11,8 +11,8 @@ export default function Home() {
             Welcome to the F1 Archive
           </div>
         </div>
-        <div className="flex justify-center py-7">
-          <div className="lg:text-xl text-sm max-w-lg  font-semibold text-center text-zinc-500">
+        <div className="flex justify-center pt-5 sm:py-7">
+          <div className="lg:text-xl text-sm w-1/2 sm:w-1/5 font-semibold text-center text-zinc-500">
             Get information about your favourite races at the click of a button!
           </div>
         </div>
