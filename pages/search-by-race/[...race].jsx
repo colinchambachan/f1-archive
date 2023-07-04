@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
           method: "GET",
           headers: {
             "x-rapidapi-host": "api-formula-1.p.rapidapi.com",
-            "x-rapidapi-key": process.env.NEXT_PUBLIC_F1_API_KEY,
+            "x-rapidapi-key": process.env.F1_API_KEY,
           },
         }
       );
