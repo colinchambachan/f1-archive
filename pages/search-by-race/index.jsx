@@ -18,15 +18,17 @@ function Search() {
       const response = await fetch(`api/getRespectiveCircuits/${selectedYear}`);
       const data = await response.json();
       setCiruitOptions(data);
+      setLoading(false);
     } else {
       setCiruitOptions([]);
+      setLoading(false);
     }
   };
 
   // Update selected circuits everytime selected year is changed
   useEffect(() => {
     setLoading(true);
-    getCiruits(selectedYear).then(setLoading(false));
+    getCiruits(selectedYear);
   }, [selectedYear]);
 
   // Check to see if button should be enabled
