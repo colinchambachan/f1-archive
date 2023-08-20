@@ -1,6 +1,6 @@
 # F1 Archive
 
-The F1 archive is a project designed to view all past F1 races and their associated stats
+The [F1 archive](https://f1archive.vercel.app/) is a project designed to view all past F1 races and their associated stats
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
